@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+<h1>Home</h1>
+<p><%= homeStartingContent_placeHolder %></p>
+
+
+<%   posts_placeHolder.forEach(function(element){%>
+<%  let url = "/posts/".concat('', element.title)%>
+<div class="">
+  <h1><a href="/posts/<%= element.title%>"><%= element.title %></a></h1>
+  <p><%= element.content.substr(0,100) %>...<a href="/posts/<%= element.title%>">Read More</a></p>
+</div>
+<%   });%>
+
+
+
+
+<%- include('partials/footer') -%>
