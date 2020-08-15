@@ -3,7 +3,8 @@ require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-var encrypt = require('mongoose-encryption');
+// const encrypt = require('mongoose-encryption');
+
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -29,7 +30,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // encrypt when "save", decrypt when "find"
-userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: [] });
+// userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: [] });
 const User = mongoose.model('User', userSchema);
 
 
@@ -39,6 +40,14 @@ app.listen(3000, function() {
 
 app.get("/", function(req, res){
   res.render("home");
+});
+
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
+app.get("/login", function(req, res){
+  res.render("login");
 });
 
 // level 1 login
