@@ -1,2 +1,5 @@
 node_modules/
 setting.txt
+constants.js
+npm-debug.log
+.env
