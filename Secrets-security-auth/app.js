@@ -26,15 +26,12 @@ const userScheme = new mongoose.Schema({
     type: String
   }
 });
-<<<<<<< HEAD
 const User = mongoose.model('User', userScheme);
 
-=======
 // encrypt when "save", decrypt when "find"
 
 userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: [] });
 const User = mongoose.model('User', userSchema);
->>>>>>> 7a6e972... level 2: encrytion and dotenv
 
 
 app.listen(3000, function() {
