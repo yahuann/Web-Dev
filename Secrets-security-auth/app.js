@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
+var encrypt = require('mongoose-encryption');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -17,7 +18,7 @@ mongoose.connect("mongodb://localhost:27017/userDB", {
   useFindAndModify: false
 });
 
-const userScheme = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   email: {
     type: String
     // required: [true, "Please Add Name"]
@@ -26,10 +27,8 @@ const userScheme = new mongoose.Schema({
     type: String
   }
 });
-const User = mongoose.model('User', userScheme);
 
 // encrypt when "save", decrypt when "find"
-
 userSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: [] });
 const User = mongoose.model('User', userSchema);
 
